@@ -146,10 +146,11 @@
     dotspacemacs-default-font (sized-font size))
     )
 
-  ; (message-box system-name)
+  ;; (message system-name)
+  (set-font-size 34)
 
   (cond
-   ((string-equal system-name "tufsla") (set-font-size 38))
+   ((string-equal system-name "jostein-xps") (set-font-size 38))
    ((string-equal system-name "todo") (set-font-size 16))
    ((string-equal system-name "JANOSCH") (set-font-size 16)))
 )
