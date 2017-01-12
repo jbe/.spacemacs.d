@@ -72,12 +72,6 @@
                          )
 
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Hack"
-                               :size 16
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
-
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
@@ -137,7 +131,28 @@
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
-   ))
+  )
+
+  (defun sized-font (size)
+    (append '("Hack"
+              :weight normal
+              :width normal
+              :powerline-scale 1.1
+              :size
+              ) (list size)))
+
+  (defun set-font-size (size)
+  (setq-default
+    dotspacemacs-default-font (sized-font size))
+    )
+
+  ; (message-box system-name)
+
+  (cond
+   ((string-equal system-name "tufsla") (set-font-size 38))
+   ((string-equal system-name "todo") (set-font-size 16))
+   ((string-equal system-name "JANOSCH") (set-font-size 16)))
+)
 
 (defun dotspacemacs/user-init ()
 )
