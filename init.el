@@ -150,7 +150,7 @@
   (set-font-size 34)
 
   (cond
-   ((string-equal system-name "jostein-xps") (set-font-size 38))
+   ((string-equal system-name "jostein-xps") (set-font-size 34)) ;; Not working??
    ((string-equal system-name "todo") (set-font-size 16))
    ((string-equal system-name "JANOSCH") (set-font-size 16)))
 )
