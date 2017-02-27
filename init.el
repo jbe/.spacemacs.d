@@ -39,7 +39,7 @@
      semantic
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-     ;;        c-c++-enable-clang-support t
+            ;; c-c++-enable-clang-support t
             )
      )
 
@@ -141,6 +141,8 @@
    web-mode-attr-indent-offset 2
 
    powerline-default-separator 'arrow
+
+   syntax-checking-enable-by-default nil
   )
 
   (defun sized-font (size)
@@ -179,7 +181,6 @@
   (define-key evil-insert-state-map (kbd "C-c") 'evil-escape)
   (define-key evil-visual-state-map (kbd "C-c") 'evil-escape)
 
-
   (define-key evil-normal-state-map
     (kbd "RET") 'evil-search-forward)
 
@@ -190,7 +191,7 @@
   (set-quit-char "C-c")
 
   (add-to-list 'company-backends 'company-c-headers)
-  (add-to-list 'company-c-headers-path-system "vendor/src" )
+  (add-to-list 'company-c-headers-path-system "vendor/src")
 
   (set-face-attribute 'helm-selection nil
                       :background "dark slate grey"
@@ -209,6 +210,17 @@
     (cons msg code))
   ;; Specify my function (maybe I should have done a lambda function)
   (setq compilation-exit-message-function 'compilation-exit-autoclose)
+
+  (c-add-style "jbe" '((indent-tabs-mode . nil)
+                       (c-basic-offset . 2)
+                       (c-offsets-alist
+                        (substatement-open . 0)
+                        (inline-open . 0)
+                        (statement-cont . c-lineup-assignments)
+                        (inextern-lang . 0)
+                        (innamespace . 0))))
+
+  (push '(other . "jbe") c-default-style)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
