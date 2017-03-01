@@ -41,6 +41,7 @@
             c-c++-default-mode-for-headers 'c++-mode
             ;; c-c++-enable-clang-support t
             )
+     shaders
      )
 
    dotspacemacs-additional-packages '()
