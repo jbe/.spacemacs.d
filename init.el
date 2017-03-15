@@ -198,6 +198,17 @@
                       :background "dark slate grey"
                       :foreground "snow")
 
+  (c-add-style "jbe" '((indent-tabs-mode . nil)
+                       (c-basic-offset . 2)
+                       (c-offsets-alist
+                        (substatement-open . 0)
+                        (inline-open . 0)
+                        (statement-cont . c-lineup-assignments)
+                        (inextern-lang . 0)
+                        (innamespace . 0))))
+
+  (push '(other . "jbe") c-default-style)
+
   ;; Helper for compilation. Close the compilation window if
   ;; there was no error at all.
   (defun compilation-exit-autoclose (status code msg)
@@ -211,17 +222,6 @@
     (cons msg code))
   ;; Specify my function (maybe I should have done a lambda function)
   (setq compilation-exit-message-function 'compilation-exit-autoclose)
-
-  (c-add-style "jbe" '((indent-tabs-mode . nil)
-                       (c-basic-offset . 2)
-                       (c-offsets-alist
-                        (substatement-open . 0)
-                        (inline-open . 0)
-                        (statement-cont . c-lineup-assignments)
-                        (inextern-lang . 0)
-                        (innamespace . 0))))
-
-  (push '(other . "jbe") c-default-style)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
