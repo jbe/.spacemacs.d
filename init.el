@@ -232,4 +232,3 @@
 
   (doom-themes-neotree-config)
 )
-
