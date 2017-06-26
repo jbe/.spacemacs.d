@@ -198,7 +198,7 @@
   (hlinum-activate)
 
   ;; (setq split-height-threshold nil)
-  ;; (setq split-width-threshold 200)
+  (setq split-width-threshold 100)
 
   (define-key evil-insert-state-map (kbd "C-c") 'evil-escape)
   (define-key evil-visual-state-map (kbd "C-c") 'evil-escape)
