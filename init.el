@@ -234,7 +234,7 @@
 
   (push '(other . "jbe") c-default-style)
 
-  (doom-themes-neotree-config)
+  ;; (doom-themes-neotree-config)
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
