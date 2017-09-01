@@ -31,7 +31,7 @@
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-tab-key-behavior 'complete)
+                      auto-completion-tab-key-behavior nil) ;; was 'complete
      (shell :variables
             shell-default-shell 'eshell
             ;; shell-default-height 30
@@ -205,6 +205,7 @@
   (setq split-width-threshold 100)
 
   (setq global-visual-line-mode t)
+  (global-set-key (kbd "TAB") 'hippie-expand)
 
   (define-key evil-insert-state-map (kbd "C-c") 'evil-escape)
   (define-key evil-visual-state-map (kbd "C-c") 'evil-escape)
