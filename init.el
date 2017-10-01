@@ -135,7 +135,7 @@
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2
 
-   powerline-default-separator 'arrow
+   powerline-default-separator 'alternate
 
    syntax-checking-enable-by-default nil
   )
@@ -143,8 +143,8 @@
 
 (defun dotspacemacs/user-init ()
   (defun sized-font (size)
-    (append '("Hack"
-              :weight normal
+    (append '("M+ 1m"
+              :weight regular
               :width normal
               :powerline-scale 1.1
               :size
@@ -155,7 +155,7 @@
      dotspacemacs-default-font (sized-font size))
     )
 
-  (set-font-size 34) ;; needed because below detection not working on xps
+  (set-font-size 36) ;; needed because below detection not working on xps
 
   (cond
    ((string-equal system-name "jostein-xps") (set-font-size 34)) ;; Not working??
