@@ -11,6 +11,7 @@
 
    dotspacemacs-configuration-layers
    '(
+     csv
      helm
      emacs-lisp
      git
@@ -46,7 +47,10 @@
 
    dotspacemacs-additional-packages '(doom-themes hlinum)
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '(evil-unimpaired org-agenda smartparens)
+   dotspacemacs-excluded-packages '(
+                                    evil-unimpaired
+                                    ;; org-agenda smartparens
+                                    )
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
@@ -155,10 +159,10 @@
      dotspacemacs-default-font (sized-font size))
     )
 
-  (set-font-size 36) ;; needed because below detection not working on xps
+  (set-font-size 38) ;; needed because below detection not working on xps
 
   (cond
-   ((string-equal system-name "jostein-xps") (set-font-size 34)) ;; Not working??
+   ((string-equal system-name "jostein-xps") (set-font-size 38)) ;; Not working??
    ((string-equal system-name "Jossier") (set-font-size 14))
    ((string-equal system-name "JANOSCH") (set-font-size 16)))
 
@@ -194,11 +198,9 @@
 )
 
 (defun dotspacemacs/user-config ()
-  ;; (global-hl-line-mode -1) ; Disable current line highlight
-  (global-linum-mode) ; Show line numbers by default
-  (global-company-mode)
   (hlinum-activate)
 
+  ;; hide details in deer and dired:
   (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode 1)))
 
   ;; (setq split-height-threshold nil)
@@ -206,17 +208,17 @@
 
   (setq global-visual-line-mode t)
 
-  (define-key evil-insert-state-map (kbd "C-c") 'evil-escape)
-  (define-key evil-visual-state-map (kbd "C-c") 'evil-escape)
-
   (define-key evil-normal-state-map (kbd "RET") 'evil-search-forward)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
   (define-key evil-normal-state-map (kbd "-")   'deer)
 
+  (define-key evil-insert-state-map (kbd "C-c") 'evil-escape)
+  (define-key evil-visual-state-map (kbd "C-c") 'evil-escape)
+
   (define-key evil-operator-state-map (kbd "C-c") 'keyboard-quit)
   (set-quit-char "C-c")
 
-  (add-to-list 'company-backends 'company-c-headers)
+  ;; (add-to-list 'company-backends 'company-c-headers)
   ;; (add-to-list 'company-c-headers-path-user "./vendor/src")
 
   ;; (set-face-attribute 'helm-selection nil
@@ -243,7 +245,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ranger xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit stickyfunc-enhance srefactor spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pug-mode powershell popwin persp-mode paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hlinum hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot glsl-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump doom-themes disaster diff-hl define-word company-web company-tern company-statistics company-quickhelp company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (org-mime csv-mode ranger xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit stickyfunc-enhance srefactor spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters pug-mode powershell popwin persp-mode paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hlinum hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot glsl-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump doom-themes disaster diff-hl define-word company-web company-tern company-statistics company-quickhelp company-c-headers column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
